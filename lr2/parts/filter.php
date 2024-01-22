@@ -6,9 +6,9 @@ $number = $_GET['number'] ?? '';
 $studentsfrom = $_GET['studentsfrom'] ?? '';
 $studentsto = $_GET['studentsto'] ?? '';
 $furniture = $_GET['furniture'] ?? '';
+$campus = $_GET['campus'] ?? '';
 
-
-$data = classroom::getAllFiltered($number, $studentsfrom, $studentsto, $furniture);
+$data = classroom::getAllFiltered($number, $studentsfrom, $studentsto, $furniture, $campus);
 
 function draw_clients($data): void
 {
@@ -71,6 +71,12 @@ function draw_clients($data): void
             <label for="furniture">Оборудование в аудитории</label>
             <input type="text" name="furniture" id="furniture" class="form-control"
                    value="<?= htmlspecialchars($furniture) ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="campus">Кампус</label>
+            <input type="text" name="campus" id="campus" class="form-control"
+                   value="<?= htmlspecialchars($campus) ?>">
         </div>
 
 

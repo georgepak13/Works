@@ -3,7 +3,7 @@
 require_once ($_SERVER['DOCUMENT_ROOT'] . "/lr2/.core/db.php");
 class classroom
 {
-    public static function getAllFiltered(string $number, string $studentsfrom, string $studentsto, string $furniture): array
+    public static function getAllFiltered(string $number, string $studentsfrom, string $studentsto, string $furniture, string $campus): array
     {
         $condition = [];
         $sql =
@@ -23,10 +23,15 @@ class classroom
         {
             $condition[] = " c.furniture like '%$furniture%' ";
         }
+        if(!empty($campus))
+        {
+            $condition[] = " cam.name like '%$campus%' ";
+        }
         if(!empty($studentsfrom) && !empty($studentsto))
         {
             $condition[] = " c.students between $studentsfrom and $studentsto ";
         }
+
         if (!empty($condition))
         {
             $sql .= " where " . implode(" and ", $condition);
